@@ -1,6 +1,12 @@
+import logic.Chessboard;
+import logic.Player;
 import ui.ChessUI;
 
 public class ChessLaunch {
+
+    private ChessUI chessUI;
+
+
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {

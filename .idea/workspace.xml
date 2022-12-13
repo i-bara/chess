@@ -4,16 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8394aff3-8cfc-422a-941a-8cde04ee6b57" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ChessLaunch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/chessboard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/ChessUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" afterDir="false" />
+    <list default="true" id="2506dfbb-41f5-42b7-9855-0bd10fbece6f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/images/black_advisor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/black_cannon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/black_chariot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/black_elephant.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/black_general.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/black_horse.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/black_soldier.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/red_advisor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/red_cannon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/red_chariot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/red_elephant.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/red_general.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/red_horse.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/red_soldier.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/Chessboard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/Position.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/Shape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/piece/Advisor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/piece/Cannon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/piece/Chariot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/piece/Elephant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/piece/General.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/piece/Horse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/piece/Piece.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/piece/Soldier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/PieceComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChessLaunch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessLaunch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/ChessUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ChessUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,19 +61,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Data/Desktop/Project/chess/image&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "D:/Data/Desktop/Project/chess/src/images",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Data\Desktop\Project\chess\src\images" />
       <recent name="D:\Data\Desktop\Project\chess\image" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -71,7 +94,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8394aff3-8cfc-422a-941a-8cde04ee6b57" name="Changes" comment="" />
+      <changelist id="2506dfbb-41f5-42b7-9855-0bd10fbece6f" name="Changes" comment="" />
       <created>1669194265594</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
