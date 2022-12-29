@@ -5,23 +5,18 @@ import logic.Player;
 import logic.Position;
 import logic.piece.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.UnresolvedAddressException;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * 棋盘 panel。
- *
+ * 同时根据点击事件控制游戏。
  * @version 2022.11.30 19:57
  */
 public class ChessboardPanel extends JPanel {
@@ -30,11 +25,11 @@ public class ChessboardPanel extends JPanel {
     private final ImageIcon icon;
     private final Image image;
 
-    private HashSet<Piece> pieces;
+    private final HashSet<Piece> pieces;
 
-    private Chessboard chessboard;
-    private Player redPlayer;
-    private Player blackPlayer;
+    private final Chessboard chessboard;
+    private final Player redPlayer;
+    private final Player blackPlayer;
 
     private Player turnPlayer;
 
@@ -44,18 +39,23 @@ public class ChessboardPanel extends JPanel {
 
     private int focusStatus;
 
+    // 依据鼠标的按下与释放，有四种状态
     private static final int NO_FOCUS = 0; // 尚未按下鼠标
-    private static final int TO_FOCUS = 1; // 按下鼠标，但尚未确认是否这个棋子
-    private static final int FOCUSED = 2; // 松开鼠标，棋子被拾起
-    private static final int TO_MOVE = 3; // 按下鼠标，但尚未确认是否要移动
+    private static final int TO_FOCUS = 1; // 按下鼠标，但尚未确认是否这个棋子（因为需要释放的时候也在同一棋子上）
+    private static final int FOCUSED = 2; // 松开鼠标，棋子被拾起（但不知道能否移动到相应的位置）
+    private static final int TO_MOVE = 3; // 按下鼠标，但尚未确认是否要移动（因为需要释放的时候也在同一棋子上）
+
+    // 每次重新绘制只绘制一个矩形内的棋子，repaintPosition1 是该矩形的左上角，repaintPosition2 是该矩形的右下角。
+    private boolean isRepainting = false; // 用来判断是否重新绘制
+    private Position repaintPosition1;
+    private Position repaintPosition2;
 
     ChessboardPanel(LayoutManager layoutManager) {
         super(layoutManager);
-        pieces = new HashSet<Piece>();
+        pieces = new HashSet<>();
         if (iconURL != null) {
             icon = new ImageIcon(iconURL);
             image = icon.getImage();
-            System.out.println(image);
         }
         else throw new UnresolvedAddressException();
 
@@ -75,7 +75,7 @@ public class ChessboardPanel extends JPanel {
                 super.mousePressed(e);
                 position = getPosition(e.getPoint());
                 piece = chessboard.getChess(position);
-                if (position != null) {
+                if (position != null && !isRepainting) { // 重新绘制完成之后才允许新的鼠标事件，防止重新绘制前信息被改变
                     if (focusStatus == NO_FOCUS || focusStatus == TO_FOCUS) {
                         focusPosition = position;
                         focusPiece = piece;
@@ -111,59 +111,79 @@ public class ChessboardPanel extends JPanel {
                     }
                     else if (focusStatus == TO_MOVE) {
                         if (position.equals(focusPositionToMove)) {
+                            // 如果 focusPiece 可以从 focusPosition 移动到 focusPositionToMove 对应的操作
                             if (focusPiece.canGoTo(position)) {
                                 focusPiece.goTo(position);
                                 pieces.remove(piece);
-                                BufferedImage image = null;
-                                try {
-                                    image = ImageIO.read(iconURL);
-                                } catch (IOException ex) {
-                                    throw new RuntimeException(ex);
-                                }
-                                Image scaledImage = image.getScaledInstance(-1, 10, Image.SCALE_AREA_AVERAGING);
-                                //Image croppedImage = scaledImage.
 
-                                //g.drawImage(scaledImage, 0, 0, this);
-                                // 绘制图片
-                                icon.setImage(scaledImage);
-                                icon.paintIcon(ChessboardPanel.this, getGraphics(), -100, -100);
-                                //Image scaled = focusPiece.getImage().getScaledInstance(-1, (int)(0.09 * getHeight()), Image.SCALE_AREA_AVERAGING);
-                                //icon.setImage(scaled);
-                                //icon.paintIcon(ChessboardPanel.this, getGraphics(), getPoint(position).x, getPoint(position).y);
-                                //paintComponent(getGraphics());
+                                // 下一回合是另一个人着棋
                                 if (turnPlayer == redPlayer) turnPlayer = blackPlayer;
                                 else if (turnPlayer == blackPlayer) turnPlayer = redPlayer;
-                                focusPosition = null;
-                                focusPiece = null;
-                                focusPositionToMove = null;
+
+                                repaint(getPoint(focusPosition).x, getPoint(focusPosition).y,
+                                        getPieceSize(), getPieceSize());
+                                repaint(getPoint(focusPositionToMove).x, getPoint(focusPositionToMove).y,
+                                        getPieceSize(), getPieceSize());
+                                isRepainting = true;
+                                repaintPosition1 = new Position(Math.min(focusPosition.getX(), focusPositionToMove.getX()),
+                                        Math.min(focusPosition.getY(), focusPositionToMove.getY()));
+                                repaintPosition2 = new Position(Math.max(focusPosition.getX(), focusPositionToMove.getX()),
+                                        Math.max(focusPosition.getY(), focusPositionToMove.getY()));
+                                // 每一次鼠标事件结束后将调用 paintComponent()
+
                                 focusStatus = NO_FOCUS;
+                                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                             }
                             else if (piece == null) {
                                 focusPosition = null;
                                 focusPiece = null;
                                 focusStatus = NO_FOCUS;
+                                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                             }
-                            else if (focusPiece.getPlayer() == piece.getPlayer()) {
+                            else if (focusPiece.getPlayer() == piece.getPlayer() && focusPiece != piece) {
                                 focusPosition = position;
                                 focusPiece = piece;
                                 focusStatus = FOCUSED;
+                            }
+                            else {
+                                focusPosition = null;
+                                focusPiece = null;
+                                focusStatus = NO_FOCUS;
+                                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                             }
                         }
                         else {
                             focusPosition = null;
                             focusPiece = null;
                             focusStatus = NO_FOCUS;
+                            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                         }
                     }
                 }
+                else {
+                    focusPosition = null;
+                    focusPiece = null;
+                    focusStatus = NO_FOCUS;
+                    setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }
             }
+        });
+        addMouseMotionListener(new MouseAdapter() {
 
             @Override
             public void mouseMoved(MouseEvent e) {
-                int x = e.getX();
-                int y = e.getY();
-                String s = "当前鼠标坐标:(" + x + ", " + y + ")";
-                //MouseMove.lab.setText(s);
+                super.mouseMoved(e);
+                Position position = getPosition(e.getPoint());
+                Piece piece = chessboard.getChess(position);
+                if (focusStatus == NO_FOCUS || focusStatus == TO_FOCUS) {
+                    if (piece == null) setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    else if (piece.getPlayer() == turnPlayer) setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    else setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }
+                else if (focusStatus == FOCUSED || focusStatus == TO_MOVE) {
+                    if (position != null) setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    else setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }
             }
         });
 
@@ -172,9 +192,6 @@ public class ChessboardPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        //image.
-
         // 缩放图片以适应高度
         Image scaledImage = image.getScaledInstance(-1, getHeight(), Image.SCALE_AREA_AVERAGING);
 
@@ -182,13 +199,24 @@ public class ChessboardPanel extends JPanel {
         // 绘制图片
         icon.setImage(scaledImage);
         icon.paintIcon(this, g, 0, 0);
-        for (Piece piece: pieces) {
-            Image scaled = piece.getImage().getScaledInstance(-1, (int)(0.09 * getHeight()), Image.SCALE_AREA_AVERAGING);
-            icon.setImage(scaled);
-            icon.paintIcon(this, g, getPoint(piece.getPosition()).x, getPoint(piece.getPosition()).y);
-            // new ImageIcon(Objects.requireNonNull(ChessboardPanel.class.getResource("../images/icon.png"))).getImage()
+        if (isRepainting) {
+            for (Piece piece: pieces) {
+                if (piece.getPosition().getX() >= repaintPosition1.getX() && piece.getPosition().getY() >= repaintPosition1.getY() &&
+                        piece.getPosition().getX() <= repaintPosition2.getX() && piece.getPosition().getY() <= repaintPosition2.getY()) {
+                    Image scaled = piece.getImage().getScaledInstance(-1, getPieceSize(), Image.SCALE_AREA_AVERAGING);
+                    icon.setImage(scaled);
+                    icon.paintIcon(this, g, getPoint(piece.getPosition()).x, getPoint(piece.getPosition()).y);
+                }
+            }
+            isRepainting = false;
+        } else {
+            for (Piece piece: pieces) {
+                Image scaled = piece.getImage().getScaledInstance(-1, getPieceSize(), Image.SCALE_AREA_AVERAGING);
+                icon.setImage(scaled);
+                icon.paintIcon(this, g, getPoint(piece.getPosition()).x, getPoint(piece.getPosition()).y);
+                // new ImageIcon(Objects.requireNonNull(ChessboardPanel.class.getResource("../images/icon.png"))).getImage()
+            }
         }
-
     }
 
     public ChessboardPanel addPiece(Piece piece) {
@@ -196,21 +224,34 @@ public class ChessboardPanel extends JPanel {
         return this;
     }
 
+    /**
+     * 从棋盘坐标到画布位置的映射
+     * @param position 棋盘的坐标
+     * @return 要在画布上绘制的位置
+     */
     public Point getPoint(Position position) {
         return new Point((int)(0.027 * getHeight() + position.getX() * 0.0777 * getHeight()),
                 (int)(0.88 * getHeight() - position.getY() * 0.0777 * getHeight()));
     }
 
+    /**
+     * 从画布位置到棋盘坐标的映射
+     * @param point 在画布上点击的位置
+     * @return 对应的棋盘的坐标
+     */
     private Position getPosition(Point point) {
         int x = (int)((((float)point.x / getHeight()) - 0.027) / 0.0777);
         int y = (int)((0.88 - ((float)point.y / getHeight())) / 0.0777) + 1;
         Position position = new Position(x, y);
-        Point point1 = new Point(getPoint(position).x + (int)(0.045 * getHeight()),
-                getPoint(position).y + (int)(0.045 * getHeight()));
+        Point point1 = new Point(getPoint(position).x + getPieceSize() / 2,
+                getPoint(position).y + getPieceSize() / 2);
         if (point.distance(point1) <= 0.05 * getHeight()) return position;
         else return null;
     }
 
+    /**
+     * 在游戏开始时，把所有棋子加入棋盘
+     */
     private void initializeChessboard() {
         addPiece(new General(chessboard, redPlayer, new Position(5, 1),
                 new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
@@ -308,6 +349,14 @@ public class ChessboardPanel extends JPanel {
                 .addPiece(new Soldier(chessboard, blackPlayer, new Position(1, 7),
                         new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
                                 .getResource("../images/black_soldier.png"))).getImage()));
+    }
+
+    /**
+     * 用来获取棋子在画布上绘制的尺寸
+     * @return 当前棋子绘制在画布上的宽与高
+     */
+    private int getPieceSize() {
+        return (int)(0.09 * getHeight());
     }
 
 }
