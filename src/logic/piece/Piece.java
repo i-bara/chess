@@ -20,7 +20,6 @@ public abstract class Piece {
         this.image = image;
         chessboard.add(this);
     }
-
     public Position getPosition() {
         return position;
     }
