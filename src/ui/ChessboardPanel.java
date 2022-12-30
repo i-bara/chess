@@ -118,44 +118,51 @@ public class ChessboardPanel extends JPanel {
                             // 如果 focusPiece 可以从 focusPosition 移动到 focusPositionToMove 对应的操作
                             if (focusPiece.canGoTo(position)) {
 
-                                focusPiece.goTo(position);
+                                if (focusPiece.willBeCheckmatedWhenGoingTo(position)) {
 
-                                while (status.size() > step + 1) {
-                                    status.remove(status.size() - 1);
+                                    JOptionPane.showMessageDialog(ChessboardPanel.this,
+                                            "不能这样走，否则就输了。");
+
+                                } else {
+                                    focusPiece.goTo(position);
+
+                                    while (status.size() > step + 1) {
+                                        status.remove(status.size() - 1);
+                                    }
+                                    status.add(chessboard.clone());
+                                    step++;
+
+                                    // 下一回合是另一个人着棋
+                                    if (turnPlayer == redPlayer) turnPlayer = blackPlayer;
+                                    else if (turnPlayer == blackPlayer) turnPlayer = redPlayer;
+
+                                    // 判断死否将死
+                                    Chessboard chessboard1 = chessboard.clone();
+                                    Checkmate checkmate = new Checkmate(chessboard1);
+                                    int res = checkmate.judge_status(chessboard1.getPieces(), turnPlayer);
+                                    if (res == 1)
+                                        JOptionPane.showMessageDialog(ChessboardPanel.this, "将军！");
+                                    else if (res == 2)
+                                        JOptionPane.showMessageDialog(ChessboardPanel.this, "游戏结束！"
+                                                + (turnPlayer == redPlayer ? "黑方" : "红方") + "胜利");
+
+                                    // 加上一些数字，否则旁边的棋子会被削掉一小块
+                                    repaint(getPoint(focusPosition).x+2, getPoint(focusPosition).y+2,
+                                            getPieceSize()-4, getPieceSize()-4);
+                                    repaint(getPoint(focusPositionToMove).x+2, getPoint(focusPositionToMove).y+2,
+                                            getPieceSize()-4, getPieceSize()-4);
+                                    isRepainting = true;
+                                    repaintPosition1 = new Position(
+                                            Math.min(focusPosition.getX(), focusPositionToMove.getX()),
+                                            Math.min(focusPosition.getY(), focusPositionToMove.getY()));
+                                    repaintPosition2 = new Position(
+                                            Math.max(focusPosition.getX(), focusPositionToMove.getX()),
+                                            Math.max(focusPosition.getY(), focusPositionToMove.getY()));
+                                    // 每一次鼠标事件结束后将调用 paintComponent()
+
+                                    focusStatus = NO_FOCUS;
+                                    setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                                 }
-                                status.add(chessboard.clone());
-                                step++;
-
-                                // 下一回合是另一个人着棋
-                                if (turnPlayer == redPlayer) turnPlayer = blackPlayer;
-                                else if (turnPlayer == blackPlayer) turnPlayer = redPlayer;
-
-                                // 判断死否将死
-                                Chessboard chessboard1 = chessboard.clone();
-                                Checkmate checkmate = new Checkmate(chessboard1);
-                                int res = checkmate.judge_status(chessboard1.getPieces(), turnPlayer);
-                                if (res == 1)
-                                    JOptionPane.showMessageDialog(ChessboardPanel.this, "将军！");
-                                else if (res == 2)
-                                    JOptionPane.showMessageDialog(ChessboardPanel.this, "游戏结束！"
-                                            + (turnPlayer == redPlayer ? "黑方" : "红方") + "胜利");
-
-                                // 加上一些数字，否则旁边的棋子会被削掉一小块
-                                repaint(getPoint(focusPosition).x+2, getPoint(focusPosition).y+2,
-                                        getPieceSize()-4, getPieceSize()-4);
-                                repaint(getPoint(focusPositionToMove).x+2, getPoint(focusPositionToMove).y+2,
-                                        getPieceSize()-4, getPieceSize()-4);
-                                isRepainting = true;
-                                repaintPosition1 = new Position(
-                                        Math.min(focusPosition.getX(), focusPositionToMove.getX()),
-                                        Math.min(focusPosition.getY(), focusPositionToMove.getY()));
-                                repaintPosition2 = new Position(
-                                        Math.max(focusPosition.getX(), focusPositionToMove.getX()),
-                                        Math.max(focusPosition.getY(), focusPositionToMove.getY()));
-                                // 每一次鼠标事件结束后将调用 paintComponent()
-
-                                focusStatus = NO_FOCUS;
-                                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                             }
                             else if (piece == null) {
                                 focusPosition = null;

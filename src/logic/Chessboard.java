@@ -1,5 +1,6 @@
 package logic;
 
+import logic.piece.General;
 import logic.piece.Piece;
 
 import java.util.Collection;
@@ -34,6 +35,10 @@ public class Chessboard {
         m.remove(position);
     }
 
+    /**
+     * 克隆一个棋盘，注意所有棋子也会被克隆，因此克隆棋盘后的判断请使用「克隆后的棋盘上的棋子」
+     * @return 克隆后的棋盘
+     */
     public Chessboard clone() {
         Chessboard chessboard = new Chessboard();
         Map<Position, Piece> m = new HashMap<>(){
@@ -48,5 +53,35 @@ public class Chessboard {
         }
         chessboard.m = m;
         return chessboard;
+    }
+
+    /**
+     * 获取某玩家将军位置
+     * @param player 玩家
+     * @return 该玩家将军的位置
+     */
+    public Position getGeneralPosition(Player player) {
+        for (Piece piece : getPieces()) {
+            if (piece.getPlayer() == player && piece instanceof General) {
+                return piece.getPosition();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 判断当前某玩家是否被将军
+     * @param player 玩家
+     * @return 该玩家正在被将军
+     */
+    public boolean ifCheck(Player player) {
+        Position generalPosition = getGeneralPosition(player);
+        for (Piece piece : getPieces()) {
+            if (piece.getPlayer() != player) {
+                if (piece.canGoTo(generalPosition))
+                    return true;
+            }
+        }
+        return false;
     }
 }

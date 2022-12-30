@@ -16,14 +16,9 @@ public class Checkmate {
     public int judge_status(Collection<Piece> pieces, Player player) {
         // 0：未被将军 1：被将军 2：被将死
         int status = 0;
-        Position general_pos = null;
-        for (Piece piece : pieces) {
-            if (piece.getPlayer() == player && piece instanceof General) {
-                general_pos = piece.getPosition();
-                break;
-            }
-        }
-        if (general_pos != null && ifCheck(pieces, player, general_pos))
+        Position general_pos;
+        general_pos = chessboard.getGeneralPosition(player);
+        if (general_pos != null && chessboard.ifCheck(player))
             status = 1;
         if (status == 1) {
             status = 2;
@@ -35,31 +30,13 @@ public class Checkmate {
                         for (int y = 1; y <= 10 && status == 2; y++) {
                             to_pos = new Position(x, y);
                             if (piece.canGoTo(to_pos)) {
-                                Chessboard chessboard1 = chessboard.clone();
-                                Piece now_pie = chessboard1.getPiece(now_pos);
-                                to_pie = chessboard1.getPiece(to_pos);
-
-                                now_pie.goTo(to_pos);
-                                if (!ifCheck(chessboard1.getPieces(), player,
-                                        now_pie instanceof General ? to_pos : general_pos))
-                                    status = 1;
-                                to_pie = null;
+                                if (!piece.willBeCheckmatedWhenGoingTo(to_pos)) status = 1;
                             }
                         }
                 }
             }
         }
         return status;
-    }
-
-    public boolean ifCheck(Collection<Piece> pieces, Player player, Position general_pos) {
-        for (Piece piece : pieces) {
-            if (piece.getPlayer() != player && piece != to_pie) {
-                if (piece.canGoTo(general_pos))
-                    return true;
-            }
-        }
-        return false;
     }
 
 }

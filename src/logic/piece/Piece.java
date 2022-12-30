@@ -69,6 +69,16 @@ public abstract class Piece {
 
     abstract protected boolean canCapture(Position position1, Piece piece1, Shape shape);
 
+    public boolean willBeCheckmatedWhenGoingTo(Position position1) {
+        if (!canGoTo(position1)) return false;
+
+        Chessboard chessboard1 = chessboard.clone();
+        Piece piece = chessboard1.getPiece(position);
+
+        piece.goTo(position1);
+        return chessboard1.ifCheck(player);
+    }
+
     protected boolean inPalace(Position position1) {
         if (player.isRed()) return position1.getX() >= 4 && position1.getX() <= 6 && position1.getY() >= 1 && position1.getY() <= 3;
         else                return position1.getX() >= 4 && position1.getX() <= 6 && position1.getY() >= 8 && position1.getY() <= 10;

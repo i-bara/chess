@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2506dfbb-41f5-42b7-9855-0bd10fbece6f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logic/Checkmate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/Checkmate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Checkmate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/Chessboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Chessboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic/piece/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Piece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" afterDir="false" />
     </list>
