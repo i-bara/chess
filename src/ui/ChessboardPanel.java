@@ -380,6 +380,282 @@ public class ChessboardPanel extends JPanel {
     }
 
     /**
+     * 超级模式！在游戏开始时，把所有棋子加入棋盘
+     */
+    private void initializeChessboardEx() {
+        new General(chessboard, redPlayer, new Position(5, 1),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_general.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(1, 1),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(2, 1),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(3, 1),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(4, 1),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(6, 1),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(7, 1),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(8, 1),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(9, 1),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(1, 2),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(2, 2),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(3, 2),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(4, 2),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(5, 2),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(6, 2),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(7, 2),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(8, 2),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(9, 2),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(1, 3),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(2, 3),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(3, 3),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(4, 3),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(5, 3),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(6, 3),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(7, 3),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(8, 3),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(9, 3),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(1, 4),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(2, 4),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(3, 4),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(4, 4),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(5, 4),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(6, 4),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(7, 4),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(8, 4),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(9, 4),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(1, 5),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(2, 5),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(3, 5),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(4, 5),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(5, 5),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(6, 5),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(7, 5),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(8, 5),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new Soldier(chessboard, redPlayer, new Position(9, 5),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/red_soldier.png"))).getImage());
+        new General(chessboard, blackPlayer, new Position(5, 10),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_general.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(9, 10),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(8, 10),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(7, 10),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(6, 10),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(4, 10),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(3, 10),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(2, 10),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(1, 10),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(9, 9),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(8, 9),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(7, 9),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(6, 9),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(5, 9),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(4, 9),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(3, 9),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(2, 9),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(1, 9),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(9, 8),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(8, 8),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(7, 8),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(6, 8),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(5, 8),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(4, 8),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(3, 8),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(2, 8),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(1, 8),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(9, 7),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(8, 7),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(7, 7),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(6, 7),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(5, 7),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(4, 7),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(3, 7),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(2, 7),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(1, 7),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(9, 6),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(8, 6),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(7, 6),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(6, 6),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(5, 6),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(4, 6),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(3, 6),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(2, 6),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+        new Soldier(chessboard, blackPlayer, new Position(1, 6),
+                new ImageIcon(Objects.requireNonNull(ChessboardPanel.class
+                        .getResource("../images/black_soldier.png"))).getImage());
+    }
+
+    /**
      * 用来获取棋子在画布上绘制的尺寸
      * @return 当前棋子绘制在画布上的宽与高
      */
@@ -393,6 +669,19 @@ public class ChessboardPanel extends JPanel {
         blackPlayer = new Player(false);
 
         initializeChessboard();
+        turnPlayer = redPlayer;
+
+        status = new ArrayList<>();
+        status.add(chessboard.clone());
+        step = 0;
+    }
+
+    public void ex() {
+        chessboard = new Chessboard();
+        redPlayer = new Player(true);
+        blackPlayer = new Player(false);
+
+        initializeChessboardEx();
         turnPlayer = redPlayer;
 
         status = new ArrayList<>();

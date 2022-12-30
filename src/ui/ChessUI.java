@@ -58,6 +58,7 @@ public class ChessUI extends JFrame implements KeyListener {
         JMenuItem redoMenuItem = new JMenuItem("重做           Ctrl+Y");
         JMenuItem redoNMenuItem = new JMenuItem("重做多步   Ctrl+Alt+Y");
         JMenuItem recordMenuItem = new JMenuItem("棋谱");
+        JMenuItem exMenuItem = new JMenuItem("超级模式");
         JMenuItem exitMenuItem = new JMenuItem("退出");
         restartMenuItem.addActionListener(actionEvent -> restart());
         undoMenuItem.addActionListener(actionEvent -> undo());
@@ -65,6 +66,7 @@ public class ChessUI extends JFrame implements KeyListener {
         redoMenuItem.addActionListener(actionEvent -> redo());
         redoNMenuItem.addActionListener(actionEvent -> redoN());
         recordMenuItem.addActionListener(actionEvent -> record());
+        exMenuItem.addActionListener(actionEvent -> ex());
         exitMenuItem.addActionListener(actionEvent -> exit());
         gameMenu.add(restartMenuItem);
         gameMenu.addSeparator();
@@ -73,6 +75,8 @@ public class ChessUI extends JFrame implements KeyListener {
         gameMenu.add(redoMenuItem);
         gameMenu.add(redoNMenuItem);
         gameMenu.add(recordMenuItem);
+        gameMenu.addSeparator();
+        gameMenu.add(exMenuItem);
         gameMenu.addSeparator();
         gameMenu.add(exitMenuItem);
 
@@ -131,6 +135,13 @@ public class ChessUI extends JFrame implements KeyListener {
 
     private void record() {
         new RecordUI("棋谱：请按下鼠标左键以查看前一步的棋盘，或按下鼠标右键以查看后一步的棋盘", chessboardPanel);
+    }
+
+    private void ex() {
+        if (JOptionPane.showConfirmDialog(chessboardPanel, "您确认要游玩超级模式吗？") == 0) {
+            chessboardPanel.ex();
+            chessboardPanel.repaint();
+        }
     }
 
     private void exit() {
