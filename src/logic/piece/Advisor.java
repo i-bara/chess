@@ -22,4 +22,9 @@ public class Advisor extends Piece {
     protected boolean canCapture(Position position1, Piece piece1, Shape shape) {
         return shape.isShapeOf(1, 1) && inPalace(position1);
     }
+
+    @Override
+    public Piece clone(Chessboard chessboard, Position position) {
+        return new Advisor(chessboard, player, position, image);
+    }
 }

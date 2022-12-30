@@ -16,12 +16,17 @@ public class Elephant extends Piece {
     @Override
     protected boolean canMoveTo(Position position1, Shape shape) {
         if (!(shape.isShapeOf(2, 2) && behindRiver(position1))) return false; // 田字且不能过河
-        return chessboard.getChess(position.leg(position1)) == null; // 没有堵象眼
+        return chessboard.getPiece(position.leg(position1)) == null; // 没有堵象眼
     }
 
     @Override
     protected boolean canCapture(Position position1, Piece piece1, Shape shape) {
         if (!(shape.isShapeOf(2, 2) && behindRiver(position1))) return false; // 田字且不能过河
-        return chessboard.getChess(position.leg(position1)) == null; // 没有堵象眼
+        return chessboard.getPiece(position.leg(position1)) == null; // 没有堵象眼
+    }
+
+    @Override
+    public Piece clone(Chessboard chessboard, Position position) {
+        return new Elephant(chessboard, player, position, image);
     }
 }

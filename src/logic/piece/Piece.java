@@ -11,7 +11,7 @@ public abstract class Piece {
     protected Chessboard chessboard;
     protected Player player;
     protected Position position;
-    private Image image;
+    protected final Image image;
 
     public Piece(Chessboard chessboard, Player player, Position position, Image image) {
         this.chessboard = chessboard;
@@ -37,16 +37,27 @@ public abstract class Piece {
         return image;
     }
 
+    /**
+     * 移动到目标位置，并清除目标位置上的棋子
+     * @param position 目标位置
+     * @return 清除掉的棋子
+     */
     public Piece goTo(Position position) {
-        Piece piece = chessboard.getChess(position);
+        Piece piece = chessboard.getPiece(position);
         chessboard.remove(position);
         chessboard.remove(this.position);
         this.position = position;
         chessboard.add(this);
         return piece;
     }
+
+    /**
+     * 判断能否移动到目标位置（包括普通的移动和吃）
+     * @param position1 目标位置
+     * @return 判断结果
+     */
     public boolean canGoTo(Position position1) {
-        Piece piece1 = chessboard.getChess(position1);
+        Piece piece1 = chessboard.getPiece(position1);
         Shape shape = new Shape(position, position1);
         if (piece1 == null)
             return canMoveTo(position1, shape);
@@ -85,14 +96,14 @@ public abstract class Piece {
         if (position.getX() == position1.getX()) {
             for (int i = Math.min(position.getY(), position1.getY()) + 1; i < Math.max(position.getY(), position1.getY()); i++) {
                 p = new Position(position.getX(), i);
-                if (chessboard.getChess(p) != null) count++;
+                if (chessboard.getPiece(p) != null) count++;
             }
             return count;
         }
         else if (position.getY() == position1.getY()) {
             for (int i = Math.min(position.getX(), position1.getX()) + 1; i < Math.max(position.getX(), position1.getX()); i++) {
                 p = new Position(i, position.getY());
-                if (chessboard.getChess(p) != null) count++;
+                if (chessboard.getPiece(p) != null) count++;
             }
             return count;
         }
@@ -101,5 +112,11 @@ public abstract class Piece {
     @Override
     public String toString() {
         return getClass().getSimpleName();
+    }
+
+    public abstract Piece clone(Chessboard chessboard, Position position);
+
+    public Chessboard getChessboard() {
+        return chessboard;
     }
 }

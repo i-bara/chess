@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2506dfbb-41f5-42b7-9855-0bd10fbece6f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/ui/RecordPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/RecordUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChessLaunch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessLaunch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/Chessboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Chessboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Advisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Advisor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Cannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Cannon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Chariot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Chariot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Elephant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Elephant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/General.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/General.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Horse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Horse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Soldier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Soldier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/ChessUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ChessUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" afterDir="false" />
     </list>
@@ -52,6 +63,7 @@
       <recent name="D:\Data\Desktop\Project\chess\image" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Data\Desktop\Project\chess\src\images" />
       <recent name="D:\Data\Desktop\Project\chess\src\image" />
       <recent name="D:\Data\Desktop\Project\chess\src" />
     </key>
@@ -98,5 +110,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

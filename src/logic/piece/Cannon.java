@@ -22,4 +22,9 @@ public class Cannon extends Piece{
     protected boolean canCapture(Position position1, Piece piece1, Shape shape) {
         return shape.getMin() == 0 && countInterveningPieces(position1) == 1;
     }
+
+    @Override
+    public Piece clone(Chessboard chessboard, Position position) {
+        return new Cannon(chessboard, player, position, image);
+    }
 }

@@ -24,4 +24,9 @@ public class Soldier extends Piece{
         if (behindRiver(position))  return forward(position1);
         else                        return forwardOrHorizontally(position1);
     }
+
+    @Override
+    public Piece clone(Chessboard chessboard, Position position) {
+        return new Soldier(chessboard, player, position, image);
+    }
 }

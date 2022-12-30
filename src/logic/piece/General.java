@@ -25,4 +25,9 @@ public class General extends Piece {
                         && piece1.getClass() == General.class
                         && countInterveningPieces(position1) == 0;
     }
+
+    @Override
+    public Piece clone(Chessboard chessboard, Position position) {
+        return new General(chessboard, player, position, image);
+    }
 }
