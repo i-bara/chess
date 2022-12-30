@@ -18,10 +18,6 @@ public class Position {
         return y;
     }
 
-    public int distance(Position position1) {
-        return (position1.getX() - x) * (position1.getX() - x) + (position1.getY() - y) * (position1.getY() - y);
-    }
-
     public Position leg(Position position1) {
         return new Position(x + (position1.getX() - x) / 2, y + (position1.getY() - y) / 2);
     }

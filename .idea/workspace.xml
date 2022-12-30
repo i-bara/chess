@@ -5,20 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2506dfbb-41f5-42b7-9855-0bd10fbece6f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ui/RecordPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/RecordUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chess.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/Checkmate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChessLaunch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessLaunch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Chessboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Chessboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/piece/Advisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Advisor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/piece/Cannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Cannon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/piece/Chariot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Chariot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/piece/Elephant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Elephant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/piece/General.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/General.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/piece/Horse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Horse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic/piece/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/piece/Soldier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Soldier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/ChessUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ChessUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,18 +41,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Data/Desktop/Project/chess/src/images&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "D:/Data/Desktop/Project/chess/src/images",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "File.Encoding"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Data\Desktop\Project\chess\src\images" />
@@ -99,7 +95,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="HEAD" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -117,6 +113,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.ConcurrentModificationException" package="java.util" />
+          <option name="timeStamp" value="2" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

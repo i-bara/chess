@@ -1,5 +1,5 @@
 package ui;
-
+import logic.Checkmate;
 import logic.Chessboard;
 import logic.Player;
 import logic.Position;
@@ -119,6 +119,7 @@ public class ChessboardPanel extends JPanel {
                             if (focusPiece.canGoTo(position)) {
 
                                 focusPiece.goTo(position);
+
                                 while (status.size() > step + 1) {
                                     status.remove(status.size() - 1);
                                 }
@@ -128,6 +129,16 @@ public class ChessboardPanel extends JPanel {
                                 // 下一回合是另一个人着棋
                                 if (turnPlayer == redPlayer) turnPlayer = blackPlayer;
                                 else if (turnPlayer == blackPlayer) turnPlayer = redPlayer;
+
+                                // 判断死否将死
+                                Chessboard chessboard1 = chessboard.clone();
+                                Checkmate checkmate = new Checkmate(chessboard1);
+                                int res = checkmate.judge_status(chessboard1.getPieces(), turnPlayer);
+                                if (res == 1)
+                                    JOptionPane.showMessageDialog(ChessboardPanel.this, "将军！");
+                                else if (res == 2)
+                                    JOptionPane.showMessageDialog(ChessboardPanel.this, "游戏结束！"
+                                            + (turnPlayer == redPlayer ? "黑方" : "红方") + "胜利");
 
                                 // 加上一些数字，否则旁边的棋子会被削掉一小块
                                 repaint(getPoint(focusPosition).x+2, getPoint(focusPosition).y+2,
