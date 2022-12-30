@@ -130,7 +130,7 @@ public class ChessUI extends JFrame implements KeyListener {
     }
 
     private void record() {
-        new RecordUI("棋谱：请按下左键以查看先前的棋盘，或按下右键以查看以后的棋盘", chessboardPanel);
+        new RecordUI("棋谱：请按下鼠标左键以查看前一步的棋盘，或按下鼠标右键以查看后一步的棋盘", chessboardPanel);
     }
 
     private void exit() {

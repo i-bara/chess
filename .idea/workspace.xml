@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2506dfbb-41f5-42b7-9855-0bd10fbece6f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Checkmate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Checkmate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Chessboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Chessboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/piece/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/ChessUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ChessUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +51,7 @@
       <recent name="D:\Data\Desktop\Project\chess\image" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Data\Desktop\Project\chess\img" />
       <recent name="D:\Data\Desktop\Project\chess\src\images" />
       <recent name="D:\Data\Desktop\Project\chess\src\image" />
       <recent name="D:\Data\Desktop\Project\chess\src" />
