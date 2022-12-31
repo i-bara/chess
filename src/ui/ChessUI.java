@@ -58,6 +58,8 @@ public class ChessUI extends JFrame implements KeyListener {
         JMenuItem redoMenuItem = new JMenuItem("重做           Ctrl+Y");
         JMenuItem redoNMenuItem = new JMenuItem("重做多步   Ctrl+Alt+Y");
         JMenuItem recordMenuItem = new JMenuItem("棋谱");
+        JMenuItem redPlayerAIMenuItem = new JMenuItem("红方 AI");
+        JMenuItem blackPlayerAIMenuItem = new JMenuItem("黑方 AI");
         JMenuItem exMenuItem = new JMenuItem("超级模式");
         JMenuItem exitMenuItem = new JMenuItem("退出");
         restartMenuItem.addActionListener(actionEvent -> restart());
@@ -66,6 +68,8 @@ public class ChessUI extends JFrame implements KeyListener {
         redoMenuItem.addActionListener(actionEvent -> redo());
         redoNMenuItem.addActionListener(actionEvent -> redoN());
         recordMenuItem.addActionListener(actionEvent -> record());
+        redPlayerAIMenuItem.addActionListener(actionEvent -> redPlayerAI());
+        blackPlayerAIMenuItem.addActionListener(actionEvent -> blackPlayerAI());
         exMenuItem.addActionListener(actionEvent -> ex());
         exitMenuItem.addActionListener(actionEvent -> exit());
         gameMenu.add(restartMenuItem);
@@ -75,6 +79,9 @@ public class ChessUI extends JFrame implements KeyListener {
         gameMenu.add(redoMenuItem);
         gameMenu.add(redoNMenuItem);
         gameMenu.add(recordMenuItem);
+        gameMenu.addSeparator();
+        gameMenu.add(redPlayerAIMenuItem);
+        gameMenu.add(blackPlayerAIMenuItem);
         gameMenu.addSeparator();
         gameMenu.add(exMenuItem);
         gameMenu.addSeparator();
@@ -135,6 +142,14 @@ public class ChessUI extends JFrame implements KeyListener {
 
     private void record() {
         new RecordUI("棋谱：请按下鼠标左键以查看前一步的棋盘，或按下鼠标右键以查看后一步的棋盘", chessboardPanel);
+    }
+
+    public void redPlayerAI() {
+        chessboardPanel.changeRedPlayerAI();
+    }
+
+    public void blackPlayerAI() {
+        chessboardPanel.changeBlackPlayerAI();
     }
 
     private void ex() {

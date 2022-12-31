@@ -58,3 +58,7 @@ JDK 16 以上。
 ![img.png](images/img_10.png)
 ![img_1.png](images/img_11.png)
 ![img_2.png](images/img_12.png)
+
+新增 AI 功能！点击“红方 AI”菜单，红方将由 AI 控制！如果同时点击“红方 AI”和“黑方 AI”菜单，就可以观看 AI 的对局了！
+
+![img.png](images/img_13.png)
