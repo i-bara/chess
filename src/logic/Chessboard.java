@@ -1,10 +1,10 @@
 package logic;
 
-import logic.piece.General;
-import logic.piece.Piece;
+import logic.piece.*;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class Chessboard {
@@ -74,8 +74,9 @@ public class Chessboard {
      * @param player 玩家
      * @return 该玩家正在被将军
      */
-    public boolean ifCheck(Player player) {
+    public boolean ifChecked(Player player) {
         Position generalPosition = getGeneralPosition(player);
+        if (generalPosition == null) return false;
         for (Piece piece : getPieces()) {
             if (piece.getPlayer() != player) {
                 if (piece.canGoTo(generalPosition))
@@ -83,5 +84,135 @@ public class Chessboard {
             }
         }
         return false;
+    }
+
+    public boolean ifCheckmated(Player player) {
+        Collection<Move> possibleMoves = getPossibleMoves(player);
+        for (Move move : possibleMoves) {
+            Piece piece = move.getPiece();
+            Position position = move.getPosition();
+            if (!piece.willBeCheckmatedWhenGoingTo(position)) return false;
+        }
+        return true;
+    }
+
+    private Collection<Position> getPositionsCanGoTo(Piece piece) {
+        Collection<Position> positionsCanGoTo = new HashSet<>();
+        for (int i = 1; i < 9; i++) {
+            for (int j = 1; j < 10; j++) {
+                Position position = new Position(i, j);
+                if (piece.canGoTo(position) && !piece.willBeCheckmatedWhenGoingTo(position)) {
+                    positionsCanGoTo.add(position);
+                }
+            }
+        }
+        return positionsCanGoTo;
+    }
+
+    private Collection<Move> getPossibleMoves(Player player) {
+        Collection<Move> possibleMoves = new HashSet<>();
+        for (Piece piece : getPieces()) {
+            if (piece.getPlayer() == player) {
+                Collection<Position> positionsCanGoTo = getPositionsCanGoTo(piece);
+                for (Position position : positionsCanGoTo) {
+                    possibleMoves.add(new Move(piece, position));
+                }
+            }
+        }
+        return possibleMoves;
+    }
+
+    private Collection<Move> getPossibleMovesByOpponent(Player player) {
+        Collection<Move> possibleMoves = new HashSet<>();
+        for (Piece piece : getPieces()) {
+            if (piece.getPlayer() != player) {
+                Collection<Position> positionsCanGoTo = getPositionsCanGoTo(piece);
+                for (Position position : positionsCanGoTo) {
+                    possibleMoves.add(new Move(piece, position));
+                }
+            }
+        }
+        return possibleMoves;
+    }
+
+    public void move(Move move) {
+        move.getPiece().goTo(move.getPosition());
+    }
+
+    private static final float GENERAL = 10000;
+    private static final float CHARIOT = 100;
+    private static final float CANNON = 67;
+    private static final float HORSE = 50;
+    private static final float ELEPHANT = 30;
+    private static final float ADVISOR = 30;
+    private static final float SOLDIER_BEHIND_THE_RIVER = 10;
+    private static final float SOLDIER_CROSSED_THE_RIVER = 30;
+
+    private float accessMove(Move move) {
+        Piece piece = getPiece(move.getPosition());
+        if (piece == null) return 0;
+        else if (piece instanceof General) return GENERAL;
+        else if (piece instanceof Chariot) return CHARIOT;
+        else if (piece instanceof Cannon) return CANNON;
+        else if (piece instanceof Horse) return HORSE;
+        else if (piece instanceof Elephant) return ELEPHANT;
+        else if (piece instanceof Advisor) return ADVISOR;
+        else if (piece instanceof Soldier && piece.behindRiver(piece.getPosition())) return SOLDIER_BEHIND_THE_RIVER;
+        else if (piece instanceof Soldier && !piece.behindRiver(piece.getPosition())) return SOLDIER_CROSSED_THE_RIVER;
+        return 0;
+    }
+
+    private float accessMoveDeep(Chessboard chessboard, Player player, Move move, int depth) {
+        if (depth == 0) return 0;
+        Chessboard chessboard1 = chessboard.clone();
+        Move move1 = new Move(chessboard1.getPiece(move.getPiece().getPosition()), move.getPosition());
+        chessboard1.move(move1);
+
+        return chessboard.accessMove(move) - chessboard1.getGreatestScoreByOpponent(player, depth - 1);
+    }
+
+    private float accessMoveDeepByOpponent(Chessboard chessboard, Player player, Move move, int depth) {
+        if (depth == 0) return 0;
+        Chessboard chessboard1 = chessboard.clone();
+        Move move1 = new Move(chessboard1.getPiece(move.getPiece().getPosition()), move.getPosition());
+        chessboard1.move(move1);
+
+        return chessboard.accessMove(move) - chessboard1.getGreatestScore(player, depth - 1);
+    }
+
+    public float getGreatestScore(Player player, int n) {
+        Collection<Move> possibleMoves = getPossibleMoves(player);
+        float max = -1000000;
+        for (Move move : possibleMoves) {
+            if (accessMoveDeep(this, player, move, n) > max) {
+                max = accessMoveDeep(this, player, move, n);
+            }
+        }
+        return max;
+    }
+
+    private float getGreatestScoreByOpponent(Player player, int n) {
+        Collection<Move> possibleMovesByOpponent = getPossibleMovesByOpponent(player);
+        float max = -1000000;
+        for (Move move : possibleMovesByOpponent) {
+            if (accessMoveDeepByOpponent(this, player, move, n) > max) {
+                max = accessMoveDeepByOpponent(this, player, move, n);
+            }
+        }
+        return max;
+    }
+
+    public Move getBestMove(Player player, int n) {
+        Collection<Move> possibleMoves = getPossibleMoves(player);
+        float max = -1000000;
+        Move move_max = null;
+        for (Move move : possibleMoves) {
+            if (accessMoveDeep(this, player, move, n) > max) {
+                max = accessMoveDeep(this, player, move, n);
+                move_max = move;
+            }
+        }
+        System.out.println(move_max);
+        return move_max;
     }
 }

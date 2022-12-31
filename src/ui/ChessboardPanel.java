@@ -1,8 +1,5 @@
 package ui;
-import logic.Checkmate;
-import logic.Chessboard;
-import logic.Player;
-import logic.Position;
+import logic.*;
 import logic.piece.*;
 
 import javax.swing.*;
@@ -28,6 +25,11 @@ public class ChessboardPanel extends JPanel {
     private Chessboard chessboard;
     private Player redPlayer;
     private Player blackPlayer;
+
+    private Boolean isRedPlayerAI;
+    private Boolean isBlackPlayerAI;
+
+    private Boolean gameOver;
 
     private Player turnPlayer;
 
@@ -77,6 +79,7 @@ public class ChessboardPanel extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
+                if (isTurnPlayerAI()) return;
                 position = getPosition(e.getPoint());
                 piece = chessboard.getPiece(position);
                 if (position != null && !isRepainting) { // 重新绘制完成之后才允许新的鼠标事件，防止重新绘制前信息被改变
@@ -95,6 +98,7 @@ public class ChessboardPanel extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
+                if (isTurnPlayerAI()) return;
                 position = getPosition(e.getPoint());
                 piece = chessboard.getPiece(position);
                 if (position != null) {
@@ -137,14 +141,13 @@ public class ChessboardPanel extends JPanel {
                                     else if (turnPlayer == blackPlayer) turnPlayer = redPlayer;
 
                                     // 判断死否将死
-                                    Chessboard chessboard1 = chessboard.clone();
-                                    Checkmate checkmate = new Checkmate(chessboard1);
-                                    int res = checkmate.judge_status(chessboard1.getPieces(), turnPlayer);
-                                    if (res == 1)
-                                        JOptionPane.showMessageDialog(ChessboardPanel.this, "将军！");
-                                    else if (res == 2)
+                                    if (chessboard.ifCheckmated(turnPlayer)) {
                                         JOptionPane.showMessageDialog(ChessboardPanel.this, "游戏结束！"
                                                 + (turnPlayer == redPlayer ? "黑方" : "红方") + "胜利");
+                                        gameOver = true;
+                                    }
+                                    else if (chessboard.ifChecked(turnPlayer))
+                                        JOptionPane.showMessageDialog(ChessboardPanel.this, "将军！");
 
                                     // 加上一些数字，否则旁边的棋子会被削掉一小块
                                     repaint(getPoint(focusPosition).x+2, getPoint(focusPosition).y+2,
@@ -203,6 +206,7 @@ public class ChessboardPanel extends JPanel {
             @Override
             public void mouseMoved(MouseEvent e) {
                 super.mouseMoved(e);
+                if (isTurnPlayerAI()) return;
                 Position position = getPosition(e.getPoint());
                 Piece piece = chessboard.getPiece(position);
                 if (focusStatus == NO_FOCUS || focusStatus == TO_FOCUS) {
@@ -250,6 +254,7 @@ public class ChessboardPanel extends JPanel {
                 icon.paintIcon(this, g, getPoint(piece.getPosition()).x, getPoint(piece.getPosition()).y);
             }
         }
+        if (isTurnPlayerAI() && !gameOver) aiPlay();
     }
 
     /**
@@ -668,6 +673,11 @@ public class ChessboardPanel extends JPanel {
         redPlayer = new Player(true);
         blackPlayer = new Player(false);
 
+        isRedPlayerAI = false;
+        isBlackPlayerAI = false;
+
+        gameOver = false;
+
         initializeChessboard();
         turnPlayer = redPlayer;
 
@@ -698,8 +708,8 @@ public class ChessboardPanel extends JPanel {
         step = step - 1;
 
         // 上一回合是另一个人着棋
-        if (turnPlayer == redPlayer) turnPlayer = blackPlayer;
-        else if (turnPlayer == blackPlayer) turnPlayer = redPlayer;
+        if (turnPlayer == redPlayer && !gameOver) turnPlayer = blackPlayer;
+        else if (turnPlayer == blackPlayer && !gameOver) turnPlayer = redPlayer;
     }
 
     public void undoN(int n) {
@@ -759,5 +769,49 @@ public class ChessboardPanel extends JPanel {
 
     public int getStep() {
         return step;
+    }
+
+    public void changeRedPlayerAI() {
+        isRedPlayerAI = !isRedPlayerAI;
+        if (isTurnPlayerAI()) aiPlay();
+    }
+
+    public void changeBlackPlayerAI() {
+        isBlackPlayerAI = !isBlackPlayerAI;
+        if (isTurnPlayerAI()) aiPlay();
+    }
+
+    public boolean isTurnPlayerAI() {
+        if (turnPlayer == redPlayer) return isRedPlayerAI;
+        else if (turnPlayer == blackPlayer) return isBlackPlayerAI;
+        return false;
+    }
+
+    private void aiPlay() {
+        Move move = chessboard.getBestMove(turnPlayer, 3);
+        chessboard.move(move);
+
+        while (status.size() > step + 1) {
+            status.remove(status.size() - 1);
+        }
+        status.add(chessboard.clone());
+        step++;
+
+        // 下一回合是另一个人着棋
+        if (turnPlayer == redPlayer) turnPlayer = blackPlayer;
+        else if (turnPlayer == blackPlayer) turnPlayer = redPlayer;
+
+        // 判断死否将死
+        if (chessboard.ifCheckmated(turnPlayer)) {
+            JOptionPane.showMessageDialog(ChessboardPanel.this, "游戏结束！"
+                    + (turnPlayer == redPlayer ? "黑方" : "红方") + "胜利");
+            gameOver = true;
+        }
+        else if (chessboard.ifChecked(turnPlayer))
+            //JOptionPane.showMessageDialog(ChessboardPanel.this, "将军！");
+
+        // 如果对方是 AI ，调用函数
+        isRepainting = false;
+        repaint();
     }
 }

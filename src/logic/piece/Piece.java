@@ -76,7 +76,7 @@ public abstract class Piece {
         Piece piece = chessboard1.getPiece(position);
 
         piece.goTo(position1);
-        return chessboard1.ifCheck(player);
+        return chessboard1.ifChecked(player);
     }
 
     protected boolean inPalace(Position position1) {
@@ -84,7 +84,7 @@ public abstract class Piece {
         else                return position1.getX() >= 4 && position1.getX() <= 6 && position1.getY() >= 8 && position1.getY() <= 10;
     }
 
-    protected boolean behindRiver(Position position) {
+    public boolean behindRiver(Position position) {
         if (player.isRed()) return position.getY() <= 5;
         else                return position.getY() >= 6;
     }
