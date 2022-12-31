@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2506dfbb-41f5-42b7-9855-0bd10fbece6f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/images/img_13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logic/Move.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Checkmate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Checkmate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic/Chessboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Chessboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Advisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Advisor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Cannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Cannon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Chariot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Chariot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Elephant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Elephant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/General.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/General.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Horse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Horse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic/piece/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/ChessUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ChessUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/piece/Soldier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/piece/Soldier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ChessboardPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,5 +123,8 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/chess$Chess.ic" NAME="Chess Coverage Results" MODIFIED="1672471743848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -6,6 +6,8 @@ import logic.Position;
 import logic.Shape;
 
 import java.awt.*;
+import java.util.Collection;
+import java.util.HashSet;
 
 public class Advisor extends Piece {
 
@@ -21,6 +23,21 @@ public class Advisor extends Piece {
     @Override
     protected boolean canCapture(Position position1, Piece piece1, Shape shape) {
         return shape.isShapeOf(1, 1) && inPalace(position1);
+    }
+
+    @Override
+    public Collection<Position> getPositionsCanGoTo() {
+        Collection<Position> positionsCanGoTo = new HashSet<>();
+        Position position1;
+        position1 = position.add(1, 1);
+        if (canGoTo(position1) && !willBeCheckmatedWhenGoingTo(position1)) positionsCanGoTo.add(position1);
+        position1 = position.add(1, -1);
+        if (canGoTo(position1) && !willBeCheckmatedWhenGoingTo(position1)) positionsCanGoTo.add(position1);
+        position1 = position.add(-1, -1);
+        if (canGoTo(position1) && !willBeCheckmatedWhenGoingTo(position1)) positionsCanGoTo.add(position1);
+        position1 = position.add(-1, 1);
+        if (canGoTo(position1) && !willBeCheckmatedWhenGoingTo(position1)) positionsCanGoTo.add(position1);
+        return positionsCanGoTo;
     }
 
     @Override

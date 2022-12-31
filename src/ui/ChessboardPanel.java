@@ -787,7 +787,7 @@ public class ChessboardPanel extends JPanel {
         return false;
     }
 
-    private void aiPlay() {
+    private synchronized void aiPlay() {
         Move move = chessboard.getBestMove(turnPlayer, 3);
         chessboard.move(move);
 

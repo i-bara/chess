@@ -39,4 +39,12 @@ public class Position {
     public int hashCode() {
         return x + 13333 * y;
     }
+
+    public boolean isValid() {
+        return x >= 1 && x <= 9 && y >= 1 && y <= 10;
+    }
+
+    public Position add(int dx, int dy) {
+        return new Position(x + dx, y + dy);
+    }
 }

@@ -6,6 +6,8 @@ import logic.Position;
 import logic.Shape;
 
 import java.awt.*;
+import java.util.Collection;
+import java.util.HashSet;
 
 public class General extends Piece {
 
@@ -24,6 +26,21 @@ public class General extends Piece {
                 position.getX() == position1.getX()
                         && piece1.getClass() == General.class
                         && countInterveningPieces(position1) == 0;
+    }
+
+    @Override
+    public Collection<Position> getPositionsCanGoTo() {
+        Collection<Position> positionsCanGoTo = new HashSet<>();
+        Position position1;
+        position1 = position.add(0, 1);
+        if (canGoTo(position1) && !willBeCheckmatedWhenGoingTo(position1)) positionsCanGoTo.add(position1);
+        position1 = position.add(1, 0);
+        if (canGoTo(position1) && !willBeCheckmatedWhenGoingTo(position1)) positionsCanGoTo.add(position1);
+        position1 = position.add(0, -1);
+        if (canGoTo(position1) && !willBeCheckmatedWhenGoingTo(position1)) positionsCanGoTo.add(position1);
+        position1 = position.add(-1, 0);
+        if (canGoTo(position1) && !willBeCheckmatedWhenGoingTo(position1)) positionsCanGoTo.add(position1);
+        return positionsCanGoTo;
     }
 
     @Override

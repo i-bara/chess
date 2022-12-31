@@ -6,6 +6,7 @@ import logic.Position;
 import logic.Shape;
 
 import java.awt.*;
+import java.util.Collection;
 
 public abstract class Piece {
     protected Chessboard chessboard;
@@ -56,6 +57,7 @@ public abstract class Piece {
      * @return 判断结果
      */
     public boolean canGoTo(Position position1) {
+        if (!position1.isValid()) return false;
         Piece piece1 = chessboard.getPiece(position1);
         Shape shape = new Shape(position, position1);
         if (piece1 == null)
@@ -69,14 +71,21 @@ public abstract class Piece {
 
     abstract protected boolean canCapture(Position position1, Piece piece1, Shape shape);
 
+    abstract public Collection<Position> getPositionsCanGoTo();
+
     public boolean willBeCheckmatedWhenGoingTo(Position position1) {
         if (!canGoTo(position1)) return false;
 
-        Chessboard chessboard1 = chessboard.clone();
-        Piece piece = chessboard1.getPiece(position);
+        Position position = this.position;
+        Piece piece1 = chessboard.getPiece(position1);
+        goTo(position1);
+        boolean willBeCheckmated = chessboard.ifChecked(player);
+        chessboard.remove(position1);
+        this.position = position;
+        chessboard.add(this);
+        if (piece1 != null) chessboard.add(piece1);
 
-        piece.goTo(position1);
-        return chessboard1.ifChecked(player);
+        return willBeCheckmated;
     }
 
     protected boolean inPalace(Position position1) {

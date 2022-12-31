@@ -92,21 +92,13 @@ public class Chessboard {
     }
 
     private Collection<Position> getPositionsCanGoTo(Piece piece) {
-        Collection<Position> positionsCanGoTo = new HashSet<>();
-        for (int i = 1; i < 9; i++) {
-            for (int j = 1; j < 10; j++) {
-                Position position = new Position(i, j);
-                if (piece.canGoTo(position) && !piece.willBeCheckmatedWhenGoingTo(position)) {
-                    positionsCanGoTo.add(position);
-                }
-            }
-        }
-        return positionsCanGoTo;
+        return piece.getPositionsCanGoTo();
     }
 
     private Collection<Move> getPossibleMoves(Player player) {
         Collection<Move> possibleMoves = new HashSet<>();
-        for (Piece piece : getPieces()) {
+        Collection<Piece> pieces = new HashSet<>(getPieces());
+        for (Piece piece : pieces) {
             if (piece.getPlayer() == player) {
                 Collection<Position> positionsCanGoTo = getPositionsCanGoTo(piece);
                 for (Position position : positionsCanGoTo) {
@@ -119,7 +111,8 @@ public class Chessboard {
 
     private Collection<Move> getPossibleMovesByOpponent(Player player) {
         Collection<Move> possibleMoves = new HashSet<>();
-        for (Piece piece : getPieces()) {
+        Collection<Piece> pieces = new HashSet<>(getPieces());
+        for (Piece piece : pieces) {
             if (piece.getPlayer() != player) {
                 Collection<Position> positionsCanGoTo = getPositionsCanGoTo(piece);
                 for (Position position : positionsCanGoTo) {
@@ -163,6 +156,17 @@ public class Chessboard {
         Move move1 = new Move(chessboard1.getPiece(move.getPiece().getPosition()), move.getPosition());
         chessboard1.move(move1);
 
+//        Piece piece = move.getPiece();
+//        Position position = piece.getPosition();
+//        Position position1 = move.getPosition();
+//        Piece piece1 = chessboard.getPiece(position1);
+//        piece.goTo(position1);
+//        float score = chessboard.accessMove(move) - chessboard1.getGreatestScoreByOpponent(player, depth - 1);
+//        chessboard.remove(position1);
+//        piece.setPosition(position);
+//        chessboard.add(piece);
+//        if (piece1 != null) chessboard.add(piece1);
+
         return chessboard.accessMove(move) - chessboard1.getGreatestScoreByOpponent(player, depth - 1);
     }
 
@@ -199,11 +203,14 @@ public class Chessboard {
 
     public Move getBestMove(Player player, int n) {
         Collection<Move> possibleMoves = getPossibleMoves(player);
-        float max = -1000000;
+        System.out.println(possibleMoves.size());
+        float max = -100000000;
         Move move_max = null;
         for (Move move : possibleMoves) {
-            if (accessMoveDeep(this, player, move, n) > max) {
-                max = accessMoveDeep(this, player, move, n);
+            float score = accessMoveDeep(this, player, move, n);
+            System.out.println(move + " " + score);
+            if (max < score) {
+                max = score;
                 move_max = move;
             }
         }
